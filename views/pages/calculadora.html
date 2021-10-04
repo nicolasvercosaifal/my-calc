@@ -111,8 +111,7 @@ input {
 
         function calcularOperacao(){
             const display = document.getElementById('display');
-            const valor2 = parseInt(display.value);
-            valor1 = eval(valor1+operador+valor2);
+            valor1 = eval(display.value);
             display.value = valor1;
             operador = '';
         }       
