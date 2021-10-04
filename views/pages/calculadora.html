@@ -52,7 +52,7 @@
             const display = document.getElementById('display');
             operador = btn.value;
             valor1 = parseInt(display.value);
-            display.value = '0';
+            display.value += operador; //'0'; << alteração por ricardo menezes com ajuda do Nicolas verçosa
         }
 
         function calcularOperacao(){
