@@ -3,6 +3,60 @@
   <head>
     <title>Calculadora</title>
     <meta charset="utf-8" />
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    width: 0;
+}
+
+.container {
+   position: relative;;
+   
+}
+
+table {
+    margin-left:100px;
+    margin-right: 100px;
+    border-collapse: collapse;
+
+}
+
+#display {
+    padding: 30px;
+    width: 232px;
+    text-align: right;
+}
+
+
+input {
+    border-collapse: collapse;
+    font-size: 15pt;
+    cursor: pointer;
+    padding: 35px;
+    width: 35px;
+    font-size: 18pt;
+    height: 1vh;
+}
+
+.equals{
+    background-color: blueviolet;
+    color: white;
+    font-weight: bolder;
+ 
+}
+
+.equals:hover {
+    background-color: rebeccapurple;
+}
+
+.equals:active {
+    background-color: rgb(21, 146, 115);
+}
+
+
+
+    </style>
   </head>
   <body onkeypress="manipularTeclado()">
       <table>
@@ -30,7 +84,7 @@
         <tr>
             <td><input type="button" value="C" onclick="limparDisplay()" /></td>
             <td><input type="button" value="0" onclick="atualizarDisplay(this)" /></td>
-            <td><input type="button" value="=" onclick="calcularOperacao()" /></td>
+            <td><input class="equals" type="button" value="=" onclick="calcularOperacao()" /></td>
             <td><input type="button" value="/" onclick="atualizarOperacao(this)" /></td>
         </tr>
       </table>
