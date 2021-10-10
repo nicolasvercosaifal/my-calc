@@ -4,62 +4,61 @@
     <title>Calculadora</title>
     <meta charset="utf-8" />
     <style>
-        * {
-    margin: 0;
-    padding: 0;
-    width: 0;
-}
 
-.container {
-   position: relative;;
+    * {
+      
+        padding: 0;    
+  
+    }
+
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;
+    }
    
-}
 
-table {
-    margin-left:100px;
-    margin-right: 100px;
-    border-collapse: collapse;
-
-}
-
-#display {
-    padding: 30px;
-    width: 232px;
-    text-align: right;
-}
-
-
-input {
-    border-collapse: collapse;
-    font-size: 15pt;
-    cursor: pointer;
-    padding: 35px;
-    width: 35px;
-    font-size: 18pt;
-    height: 1vh;
-}
-
-.equals{
-    background-color: blueviolet;
-    color: white;
-    font-weight: bolder;
+    table {
+        border-collapse: collapse;
+    }
  
-}
+    #display {
+        padding: 30px;
+        width: 232px;
+        text-align: right;
+    }
 
-.equals:hover {
-    background-color: rebeccapurple;
-}
 
-.equals:active {
-    background-color: rgb(21, 146, 115);
-}
+    input {
+        font-size: 15pt;
+        cursor: pointer;
+        padding: 35px;
+        width: 35px;
+        font-size: 18pt;
+        height: 1vh;
+    }
 
+    .equals{
+        background-color: blueviolet;
+        color: white;
+        font-weight: bolder;
+    
+    }
+
+    .equals:hover {
+        background-color: rebeccapurple;
+    }
+
+    .equals:active {
+        background-color: rgb(21, 146, 115);
+    }
 
 
     </style>
   </head>
   <body onkeypress="manipularTeclado()">
-      <table>
+  
+      <table class="center">
           <tr>
               <td colspan="6"><input type="text" id="display" value="0" disabled></td>
           </tr>
@@ -88,6 +87,7 @@ input {
             <td><input type="button" value="/" onclick="atualizarOperacao(this)" /></td>
         </tr>
       </table>
+
       <script>
         function atualizarDisplay(btn){
             const display = document.getElementById('display');
