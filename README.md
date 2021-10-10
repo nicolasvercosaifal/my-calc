@@ -1,9 +1,9 @@
 # my-calc
 Versão de exemplo de uma calculadora. 
 
-Grupo: 
-Adrielle Albuquerque
-Nicolas Verçosa
+Grupo: <br>
+Adrielle Albuquerque <br>
+Nicolas Verçosa <br>
 Ricardo Menezes
 
 Aplicação rodando no Heroku: https://my-calc-1.herokuapp.com/
