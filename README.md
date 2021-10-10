@@ -1,7 +1,7 @@
 # my-calc
 Versão de exemplo de uma calculadora. 
 
-Grupo: 
+Grupo: <br>
 Adrielle Albuquerque <br>
 Nicolas Verçosa <br>
 Ricardo Menezes
