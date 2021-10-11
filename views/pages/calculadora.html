@@ -4,11 +4,10 @@
     <title>Calculadora</title>
     <meta charset="utf-8" />
     <style>
+ 
 
-    * {
-      
-        padding: 0;    
-  
+    body {
+        background-color: rgb(59, 59, 59);
     }
 
     .center {
@@ -22,29 +21,54 @@
         border-collapse: collapse;
     }
  
-    #display {
-        padding: 30px;
-        width: 232px;
-        text-align: right;
+    input {
+ 
+        height: 2vh;
     }
 
+    td {
+        padding: 0;
+    }
 
-    input {
+    #display {
+        border-radius: 2px;
+        border: none;
+        padding: 33px;
+        font-size: xx-large;
+        width: 228px;
+        text-align: right;
+        background-color: rgb(255, 255, 255);
+    }
+
+   
+    input, button{
+        margin: 0;
         font-size: 15pt;
+        border-radius: 5px;
         cursor: pointer;
         padding: 35px;
         width: 35px;
         font-size: 18pt;
-        height: 1vh;
+        background-color: rgb(221, 221, 221);
     }
 
-    .equals{
+    button {
+        margin: 0 auto;
+        text-align: center;
+        justify-content: center ;
+    }
+
+  
+    .equals {
         background-color: blueviolet;
         color: white;
         font-weight: bolder;
-    
+        height: 22vh;
+
     }
 
+
+  
     .equals:hover {
         background-color: rebeccapurple;
     }
@@ -63,29 +87,38 @@
               <td colspan="6"><input type="text" id="display" value="0" disabled></td>
           </tr>
           <tr>
+            <td><input type="button" value="C" onclick="limparDisplay()" /></td>
+            <td><input type="button" value="*" onclick="atualizarOperacao(this)" /></td>
+            <td><input type="button" value="-" onclick="atualizarOperacao(this)" /></td>
+            <td><input type="button" value="+" onclick="atualizarOperacao(this)" /></td>
+        </tr>
+        <tr>
             <td><input type="button" value="7" onclick="atualizarDisplay(this)" /></td>
             <td><input type="button" value="8" onclick="atualizarDisplay(this)" /></td>
             <td><input type="button" value="9" onclick="atualizarDisplay(this)" /></td>
-            <td><input type="button" value="*" onclick="atualizarOperacao(this)" /></td>
+            <td><input type="button" value="(" onclick="atualizarDisplay(this)"></td>
         </tr>
         <tr>
             <td><input type="button" value="4" onclick="atualizarDisplay(this)" /></td>
             <td><input type="button" value="5" onclick="atualizarDisplay(this)" /></td>
             <td><input type="button" value="6" onclick="atualizarDisplay(this)" /></td>
-            <td><input type="button" value="-" onclick="atualizarOperacao(this)" /></td>
+            <td><input type="button" value=")" onclick="atualizarDisplay(this)"></td>
         </tr>
         <tr>
             <td><input type="button" value="1" onclick="atualizarDisplay(this)" /></td>
             <td><input type="button" value="2" onclick="atualizarDisplay(this)" /></td>
             <td><input type="button" value="3" onclick="atualizarDisplay(this)" /></td>
-            <td><input type="button" value="+" onclick="atualizarOperacao(this)" /></td>
+            <td rowspan="4" colspan=""><button class="equals" value="=" onclick="calcularOperacao()">=</button></td>
         </tr>
         <tr>
-            <td><input type="button" value="C" onclick="limparDisplay()" /></td>
-            <td><input type="button" value="0" onclick="atualizarDisplay(this)" /></td>
-            <td><input class="equals" type="button" value="=" onclick="calcularOperacao()" /></td>
-            <td><input type="button" value="/" onclick="atualizarOperacao(this)" /></td>
+            <td rowspan="2"><input type="button" value="0" onclick="atualizarDisplay(this)" /></td>
+            <td rowspan="2"><input value="." type="button" onclick="atualizarDisplay(this)"></td>
+            <td><input  type="button" value="/" onclick="atualizarDisplay(this)"></td>
+
         </tr>
+        <tr>
+        </tr>
+      
       </table>
 
       <script>
@@ -106,7 +139,7 @@
             const display = document.getElementById('display');
             operador = btn.value;
             valor1 = parseInt(display.value);
-            display.value += operador; //'0'; << alteração por ricardo menezes com ajuda do Nicolas verçosa
+            display.value += operador;  
         }
 
         function calcularOperacao(){
