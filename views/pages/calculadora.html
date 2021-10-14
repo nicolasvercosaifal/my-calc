@@ -17,16 +17,18 @@
     }
 
     .center {
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 400px;
+      
         margin-top: 10px;
         margin-bottom: 15px;
+      
   
         }
    
 
     table {
         border-collapse: collapse;
+
     }
  
     input {
@@ -100,12 +102,14 @@
     }
 
     .equals:active {
-        background-color: rgb(21, 146, 115);
+        background-color: rgb(0, 218, 163);
     }
 
     .caixa-historico {
         display: flex;
         flex-direction: column;
+        margin-right: 100px;
+      
     }
 
     .tela-historico {
@@ -117,6 +121,8 @@
         font-family: sans-serif;    
         
     } 
+
+    
 
     .limpar-historico {
         background-color: rgb(31, 31, 31);
@@ -130,7 +136,7 @@
     }
 
     .limpar-historico:active {
-        border: 1px solid rgb(21, 146, 115);
+        border: 1px solid rgb(0, 218, 163);
     }
 
     </style>
@@ -226,7 +232,7 @@
             resultado = eval(display.value);
 
             operador = '';
-            botao();
+            exibirHistorico();
             display.value = resultado;
             
             
@@ -239,15 +245,14 @@
 
         }
 
-        function botao() {
+        function exibirHistorico() {
 
             var pegarTela = display.value
 
             var historicoTela = document.getElementById('historico');
             historicoTela.innerHTML += "<br />"  + display.value + ' = ' + resultado;
             
-        
-
+    
         }
 
         function limparHistorico() {
@@ -258,12 +263,13 @@
 
         function clearEntry() {
             display.value = display.value.substring(0,display.value.length - 1)
+            
+            if(display.value.length == 0) {
+                display.value = 0
+            }
         }
         
-        /*
-        function calcularPorcentagem() {
-            display.value += "%" 
-        }*/
+        
     
     </script>
 
