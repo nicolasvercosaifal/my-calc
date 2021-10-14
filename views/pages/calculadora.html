@@ -5,6 +5,12 @@
     <meta charset="utf-8" />
     <style>
  
+    .container {
+        display: flex;
+        flex-direction: row-reverse;   
+        justify-content: space-around;
+  
+    }
 
     body {
         background-color: rgb(31, 31, 31);
@@ -13,8 +19,10 @@
     .center {
         margin-left: auto;
         margin-right: auto;
-        margin-top: 50px;
-    }
+        margin-top: 10px;
+        margin-bottom: 15px;
+  
+        }
    
 
     table {
@@ -83,14 +91,10 @@
         background-color: blueviolet;
         color: white;
         font-weight: bolder;
-    /*    height: 38vh; */
+    /*  height: 38vh; */
         height: 160px;
-
-
     }
-
-
-  
+    
     .equals:hover {
         background-color: rebeccapurple;
     }
@@ -99,12 +103,46 @@
         background-color: rgb(21, 146, 115);
     }
 
+    .caixa-historico {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .tela-historico {
+        color: white;
+        border: 1px solid blueviolet;
+        width: 100px;
+        padding: 40px;
+        position: relative;
+        font-family: sans-serif;    
+        
+    } 
+
+    .limpar-historico {
+        background-color: rgb(31, 31, 31);
+        border: 1px solid blueviolet;
+        color: white;
+        font-size: medium;
+        font-weight: 600;
+        float: right;
+        width: 180px;
+        height: 100px;
+    }
+
+    .limpar-historico:active {
+        border: 1px solid rgb(21, 146, 115);
+    }
 
     </style>
   </head>
   <body onkeypress="manipularTeclado()">
-  
-      <table class="center">
+
+     <div class="container">
+      <div class="caixa-historico" >
+            <p class="tela-historico" id="historico">Histórico<br/> </p>
+            <button type="button" class="limpar-historico" onclick="limparHistorico()">Limpar</button>
+        </div> 
+        <table class="center" name="calc">
           <tr>
               <td colspan="6"><input type="text" id="display" value="0" disabled></td>
           </tr>
@@ -118,7 +156,7 @@
 
         </tr>
         <tr>
-            <td><input type="button" value="&#37;" class="botao-operador"></td>
+            <td><input type="button" value="&#37;" class="botao-operador" onclick="calcularPorcentagem()" id="porcentagem"></td>
             <td><input type="button" value="7" onclick="atualizarDisplay(this)" class="botao-numero" /></td>
             <td><input type="button" value="8" onclick="atualizarDisplay(this)" class="botao-numero"/></td>
             <td><input type="button" value="9" onclick="atualizarDisplay(this)" class="botao-numero"/></td>
@@ -148,12 +186,26 @@
       
       </table>
 
+    </div>
       <script>
+         
+        
+         
         function atualizarDisplay(btn){
             const display = document.getElementById('display');
             if(display.value.length === 20) return;
             if(display.value === '0') display.value = btn.value;
             else display.value += btn.value;
+ 
+
+            
+            var myFunction = (function(){
+               var called = false;
+                if(!called) {
+                    calcularPorcentagem();
+                }  
+            })
+               
         }
 
         function limparDisplay(){
@@ -161,25 +213,64 @@
         }
 
         var operador = ''
-        var valor1 = 0
+        var resultado = 0
         function atualizarOperacao(btn){
             const display = document.getElementById('display');
+            if(display.value.length === 9) return;
+            if(display.value === '0') display.value = btn.value;
+            else display.value += btn.value;
+            
+         /*   const display = document.getElementById('display');
             operador = btn.value;
             valor1 = parseInt(display.value);
-            display.value += operador;  
+            display.value += operador;   */
+            
+
+
         }
 
         function calcularOperacao(){
             const display = document.getElementById('display');
-            valor1 = eval(display.value);
-            display.value = valor1;
+            resultado = eval(display.value);
+          /*  display.value = valor1; */
             operador = '';
+            botao();
+            display.value = resultado;
+            
+            
         }       
-
+        const telinha = 
         function manipularTeclado(){
             if(/[0-9]/.test(event.key))
                 atualizarDisplay({value: event.key});
+
         }
+/*
+        function gravarHistorico() {
+            var historicoTela = document.getElementById('historico');
+            historicoTela.textContent += display.value
+        } */
+        function botao() {
+
+            var pegarTela = display.value
+
+            var historicoTela = document.getElementById('historico');
+            historicoTela.innerHTML += "<br />"  + display.value + ' = ' + resultado;
+            
+        
+
+        }
+
+        function limparHistorico() {
+            var historicoTela = document.getElementById('historico');
+            historicoTela.innerHTML = 'Histórico';
+             alert("teste")
+     }
+        /*
+        function calcularPorcentagem() {
+            display.value += "%" 
+        }*/
+    
     </script>
 
   </body>
