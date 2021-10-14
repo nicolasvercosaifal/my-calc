@@ -148,7 +148,7 @@
           </tr>
           <tr>
             <td><input type="button" value="C" onclick="limparDisplay()" class="botao-operador"/></td>
-            <td><input type="button" value="CE" class="botao-operador"></td>
+            <td><input type="button" value="CE" class="botao-operador" onclick="clearEntry()"></td>
             <td><input type="button" value="(" onclick="atualizarDisplay(this)" class="botao-operador"></td>
             <td><input type="button" value=")" onclick="atualizarDisplay(this)" class="botao-operador"></td>
             <td><input type="button" value="+" onclick="atualizarOperacao(this)"class="botao-operador"/></td>
@@ -219,23 +219,16 @@
             if(display.value.length === 9) return;
             if(display.value === '0') display.value = btn.value;
             else display.value += btn.value;
-            
-         /*   const display = document.getElementById('display');
-            operador = btn.value;
-            valor1 = parseInt(display.value);
-            display.value += operador;   */
-            
-
-
         }
 
         function calcularOperacao(){
             const display = document.getElementById('display');
             resultado = eval(display.value);
-          /*  display.value = valor1; */
+
             operador = '';
             botao();
             display.value = resultado;
+            
             
             
         }       
@@ -245,11 +238,7 @@
                 atualizarDisplay({value: event.key});
 
         }
-/*
-        function gravarHistorico() {
-            var historicoTela = document.getElementById('historico');
-            historicoTela.textContent += display.value
-        } */
+
         function botao() {
 
             var pegarTela = display.value
@@ -265,7 +254,12 @@
             var historicoTela = document.getElementById('historico');
             historicoTela.innerHTML = 'Histórico';
          
-     }
+        }
+
+        function clearEntry() {
+            display.value = display.value.substring(0,display.value.length - 1)
+        }
+        
         /*
         function calcularPorcentagem() {
             display.value += "%" 
