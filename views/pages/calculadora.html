@@ -157,7 +157,7 @@
             <td><input type="button" value="CE" class="botao-operador" onclick="clearEntry()"></td>
             <td><input type="button" value="(" onclick="atualizarDisplay(this)" class="botao-operador"></td>
             <td><input type="button" value=")" onclick="atualizarDisplay(this)" class="botao-operador"></td>
-            <td><input type="button" value="+" onclick="atualizarOperacao(this)"class="botao-operador"/></td>
+            <td><input type="button" value=" + " onclick="atualizarOperacao(this)"class="botao-operador"/></td>
             
 
         </tr>
@@ -166,10 +166,10 @@
             <td><input type="button" value="7" onclick="atualizarDisplay(this)" class="botao-numero" /></td>
             <td><input type="button" value="8" onclick="atualizarDisplay(this)" class="botao-numero"/></td>
             <td><input type="button" value="9" onclick="atualizarDisplay(this)" class="botao-numero"/></td>
-            <td><input type="button" value="-" onclick="atualizarOperacao(this)" class="botao-operador"/></td>
+            <td><input type="button" value=" - " onclick="atualizarOperacao(this)" class="botao-operador"/></td>
         </tr>
         <tr>
-            <td><input type="button" value="*" onclick="atualizarOperacao(this)" class="botao-operador" /></td>
+            <td><input type="button" value=" * " onclick="atualizarOperacao(this)" class="botao-operador" /></td>
             <td><input type="button" value="4" onclick="atualizarDisplay(this)" class="botao-numero"/></td>
             <td><input type="button" value="5" onclick="atualizarDisplay(this)" class="botao-numero"/></td>
             <td><input type="button" value="6" onclick="atualizarDisplay(this)" class="botao-numero"/></td>
@@ -183,7 +183,7 @@
             <td rowspan="3" colspan=""><button class="equals" value="=" onclick="calcularOperacao()">=</button></td>
         </tr>
         <tr>
-            <td><input  type="button" value="/" onclick="atualizarDisplay(this)" class="botao-operador"></td>
+            <td><input  type="button" value=" / " onclick="atualizarDisplay(this)" class="botao-operador"></td>
             <td rowspan="2" colspan="2"><input type="button" value="0" onclick="atualizarDisplay(this)" class="botao-zero"/></td>
             <td rowspan="2"><input value="." type="button" onclick="atualizarDisplay(this)" class="botao-numero"></td>
         </tr>
@@ -202,9 +202,10 @@
             if(display.value.length === 20) return;
             if(display.value === '0') display.value = btn.value;
             else display.value += btn.value;
- 
+            var operador =  btn.value
+             
+           
 
-            
             var myFunction = (function(){
                var called = false;
                 if(!called) {
@@ -231,11 +232,11 @@
             const display = document.getElementById('display');
             resultado = eval(display.value);
 
+            
+
             operador = '';
             exibirHistorico();
             display.value = resultado;
-            
-            
             
         }       
         const telinha = 
@@ -270,10 +271,68 @@
         }
         
         function calcularRaiz() {
+            const valorInicial = display.value;
+            var historicoRaiz = Math.sqrt(display.value)
             display.value = Math.sqrt(display.value)
+            var historicoTela = document.getElementById('historico');
+            historicoTela.innerHTML += "<br />" + "" + " = " + historicoRaiz;
         }
-    
-    </script>
+
+
+        function calcularPorcentagem() {
+ 
+            const expressao = display.value;
+            var primeiro = display.value.substring(0, display.value.indexOf(" "));
+            var primeiroComOperador = display.value.split(" ").slice(0, -1).join(" ");
+            
+            var ultimo = display.value.substring(display.value.lastIndexOf(" ")+1)
+            var checar = expressao.split(' ').length
+            var umNumero = Number(expressao / 100)
+            
+            var divi = " / ";
+            var procurarDivi = expressao.search(divi);
+            var multi = " * ";
+            var procurarMulti = expressao.search(multi);
+           
+            if(checar === 1){   
+                display.value = umNumero;
+                historicoTela.innerHTML = '';
+              
+            } else if(procurarDivi === 1) { //checa se é com divisão
+
+                display.value = (primeiro / ultimo)*100
+                historicoTela.innerHTML = resultado
+                
+            }else if(procurarMulti === 1){  //checa se é com multiplicação
+                
+                 display.value = (primeiro * ultimo)/100
+                 historicoTela.innerHTML = display.value
+            }
+            var historicoTela = document.getElementById('historico');
+            //historicoTela.innerHTML = umNumero;
+            var porcentagem = ultimo/100*primeiro 
+            var resultado = eval(primeiroComOperador + porcentagem)
+            historicoTela.innerHTML = resultado
+
+            
+            /*          
+            display.value = resultado
+            var historicoTela = document.getElementById('historico');
+            historicoTela.innerHTML += "<br />" + expressao + "% " + " = " + resultado;
+            
+          */
+         
+ 
+       /* 
+            var historicoTela = document.getElementById('historico');
+            historicoTela.innerHTML += "<br />" + expressao + "% " + " = " + resultado;
+            
+            
+           */
+
+        }
+      
+    </script> 
 
   </body>
 </html>
